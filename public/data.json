@@ -1,0 +1,16 @@
+{
+    "series": [
+        {
+            "id": 1,
+            "name": "example",
+            "portrait": "example.jpg",
+            "capitulos": [
+                {
+                    "id": 1,
+                    "titulo": "example",
+                    "url": "video/example/example.mp4"
+                }
+            ]
+        }
+    ]
+}
