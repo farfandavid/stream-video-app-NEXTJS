@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const series = async (serie, idCapitulo) => {
+const series = async (serie) => {
   const { capitulos } = await fetch(`http://localhost:3000/api/${serie}`)
     .then(async (res) => await res.json())
     .then(data => {
@@ -10,16 +10,27 @@ const series = async (serie, idCapitulo) => {
 }
 
 async function capitulo({ params }) {
+  const capitulos = await series(params.serie)
+  const capitulo = capitulos.filter(cap => cap.id == params.capitulo);
+  const anterior = () => {
+
+    if (params.capitulo > 1) {
+      return params.capitulo - 1
+    }
+    return params.capitulo
+  }
   //console.log(await series(params.serie))
   return (
-    <div>
-      <Link href={'/'} className="bg-white rounded p-2 m-2" >Home</Link>
-      <h1 className="text-white m-2"></h1>
-      <video className="m-2" controls>
-        <source src="http://localhost:3000/api/inuyasha/1" type="video/mp4" />
+    <div className="flex flex-col justify-center items-center">
+      <h1 className="text-white m-2">{capitulo[0].titulo}</h1>
+      <video className="w-1/3 m-2" controls>
+        <source src={`http://localhost:3000/api/${params.serie}/${params.capitulo}`} type="video/mp4" />
       </video>
-      <a href={'/'} className="bg-white rounded p-2 m-2">Anterior</a>
-      <a href={'/inuyasha/2'} className="bg-white rounded p-2 m-2">Siguiente</a>
+      <div className="flex justify-between w-1/3 font-bold text-white">
+        <Link href={`/${params.serie}/${anterior()}`} className="bg-slate-400 rounded p-2 m-2">Anterior</Link>
+        <Link href={`/${params.serie}/${Number(params.capitulo) + 1}`} className="bg-slate-400 rounded p-2 m-2">Siguiente</Link>
+      </div>
+
     </div>
   );
 }

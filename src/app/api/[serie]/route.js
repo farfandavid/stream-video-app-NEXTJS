@@ -3,7 +3,7 @@ import fsPromises from 'fs/promises'
 import path from 'path';
 
 const serie = async (name) => {
-  const filePath = path.join(process.cwd(), 'public/data.json');
+  const filePath = path.join(process.cwd(), 'data.json');
   const jsonData = await fsPromises.readFile(filePath);
   const objectData = JSON.parse(jsonData.toString());
   const res = objectData.series.filter(serie => serie.name === name)

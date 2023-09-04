@@ -18,8 +18,11 @@ export default async function Home() {
     <main>
       {serie.map((ser) => {
         return (
-          <div key={ser.id + "serie"}>
-            <Link href={'/' + ser.name}><img src={ser.portrait} /></Link>
+          <div className="flex flex-wrap gap-2 mx-2 p-2" key={ser.id + "serie"}>
+            <Link className="w-1/5" href={'/' + ser.name}><img className="rounded-lg" src={ser.portrait} /></Link>
+            <Link className="w-1/5" href={'/' + ser.name}><img className="rounded-lg" src={ser.portrait} /></Link>
+            <Link className="w-1/5" href={'/' + ser.name}><img className="rounded-lg" src={ser.portrait} /></Link>
+            <Link className="w-1/5" href={'/' + ser.name}><img className="rounded-lg" src={ser.portrait} /></Link>
           </div>
         )
       })}

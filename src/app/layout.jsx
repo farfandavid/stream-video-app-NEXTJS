@@ -1,3 +1,4 @@
+import Navbar from '@/components/Navbar'
 import './globals.css'
 
 
@@ -9,7 +10,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className='bg-indigo-950'>
+      <body className='bg-slate-900 flex flex-col w-[100vw-1px]'>
+        {<Navbar></Navbar>}
         {children}
       </body>
     </html>
